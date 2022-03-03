@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=KoHo:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'styl.css'%}">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="parent">
+        <div class="nav-wrapper">
+            <form method="post" action="{% url 'login' %}">
+                {% csrf_token %}
+
+                <div class="navi-low">
+                    {% if messages %} {% for message in messages%} {{message}} {% endfor %} {% endif %}
+                    <div class="Thelogin">
+                        <span>Log In</span>
+                    </div>
+                    <div class="username">
+                        <span class="material-icons-outlined">
+                            person_outline
+                            </span>
+                        <input type="text" name="username" placeholder="Username or email" required pattern="[A-Za-z]{4,8}" title="4 to 8 lowercase letters">
+                        <!-- <span class="validity"></span> -->
+
+                    </div>
+                    <div class="password">
+                        <span class="material-icons-outlined">
+                            lock
+                            </span>
+                        <input type="password" name="password" pattern="[0-9a-fA-F]{4,8}" placeholder="Password" minlength="8" required>
+                        <span></span>
+                    </div>
+                    <!-- <div class="password">
+                        <span class="material-icons-outlined">
+                            lock
+                            </span>
+                        <input type="password" name="password1" placeholder=" repeart Password" required>
+                    </div> -->
+
+                    <div class="button">
+                        <input type="submit" value="login">
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

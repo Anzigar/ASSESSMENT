@@ -1,0 +1,104 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=KoHo:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="outer">
+        <div class="bigg">
+            <div class="containers">
+                <form method="post" action="{% url 'signup'%}">
+                    {% csrf_token %}
+                    <div class="form-1">
+                        {% if messages %} {% for message in messages%} {{message}} {% endfor %} {% endif %}
+                        <div class="sign">
+                            <span>Sign Up</span>
+                        </div>
+                        <label for="fname">First Name</label>
+                        <input type="text" id="fname" name="fname" title="please fill the firstname" pattern="[A-Za-z]{4,40}" placeholder=" Enter your first name" required>
+                        <label for="fname">Middle Name</label>
+                        <input type="text" id="fname" pattern="[A-Za-z]{4,40}" title="please fill the middle name" name="Mname" placeholder="Enter your middle name" required>
+                        <label for="lname">Last Name</label>
+                        <input type="text" id="lname" pattern="[A-Za-z]{4,40}" title="please fill the lastname" name="lname" placeholder="Enter your Last Name" required>
+                        <label for="email">Email</label>
+                        <input type="email" id="email " name="email " title="please fill the format  " placeholder="example@gmail.com " required>
+                        <label for="fname">Username</label>
+                        <input type="text" id="usr" pattern="[A-Za-z]{4,40}" name="username" placeholder="Enter your username" required>
+                        <label for="address">Address</label>
+                        <input type="text" id="address" pattern="[A-Za-z]{4,40}" name="address" placeholder="example Ilala ">
+                        <label for="password">Password</label>
+                        <input type="password" id="password1" pattern="[0-9a-fA-F]{4,8}" minlength="8 " name="password1 " placeholder="Enter your Password" required>
+                        <label for="password">Repeat Password</label>
+                        <input type="password" id="password2" pattern="[0-9a-fA-F]{4,8}" minlength="8 " name="password2 " placeholder="Repeat your Password" required>
+                        <input type="submit" value="SignUp">
+                    </div>
+                </form>
+                <script>
+                    //input box, as well as the span element
+                    const form = document.getElementByTagName('form')[0];
+
+                    const email = document.getElementById('email');
+                    const emailError = document.querySelector('#email + span.error');
+
+                    email.addEventListener('input', function(event) {
+                        //Each time the user types something, we check if the
+                        //form field are valid
+
+                        if (email.validity.valid) {
+                            // in case there is an error message visible, if the field
+                            //is valid, we remove the error message.
+                            emailError.textContent = ''; //reset the content of the message
+                            emailError.className = 'error'; //Reset the visual state of the message
+
+                        } else {
+                            //if the email field is valid, we let the form submit
+                            showError();
+                        }
+                    });
+
+                    form.addEventListener('submit', function(event) {
+                        //if the email field is valid, we let the form submit
+                        if (!email.validity.valid) {
+                            //if it isn't the form from being sent canceling the event
+                            event.preventDefault();
+                        }
+                    });
+
+                    function showError() {
+                        if (email.validity.valueMissing) {
+                            //if the field is empty,
+                            //display the following error message.
+                            emailError.textContent = 'You need to enter an e-mail address.';
+
+                        } else if (email.validity.typeMismatch) {
+                            //If the field does't  contain an email address,
+                            //display the following error message.
+                            emailError.textContent = 'Entered value needs to be an e-mail';
+                        } else if (email.validity.tooshot) {
+                            //if the data is too short,
+                            //display the following error message.
+                            emailError.textContent = 'Email should be at least ${email.minLength} characters; you entered ${email.value.length}.';
+                        }
+                        //set the styling appropiately
+                        emailError.className = 'error active';
+                    }
+                </script>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

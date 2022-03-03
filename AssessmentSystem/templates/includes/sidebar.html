@@ -1,0 +1,59 @@
+{% load static%}
+<div class="scrollbar-sidebar">
+    <div class="app-sidebar__inner">
+        <ul class="vertical-nav-menu">
+            <li class="app-sidebar__heading">SELF ASSESSMENT </li>
+            <li>
+                <a href="/index" class="mm-active">
+                    <!--<i class="metismenu-icon pe-7s-rocket"></i>-->
+                    Dashboard </a>
+            </li>
+            <li>
+                {% if perms.AssessmentSystem.view_plan %}
+                <a href="#"><i class="metismenu-icon pe-7s-diamond"></i>Plan <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i></a> {% endif %}
+                <ul>
+                    {% if perms.AssessmentSystem.add_plan %}
+                    <li><a href="/addproject"><i class="metismenu-icon"></i>Add Plan </a></li>
+                    {% endif %} {% if perms.AssessmentSystem.change_plan or perms.AssessmestSystem.delete_plan %}
+                    <li><a href="/manageproject"><i class="metismenu-icon"></i>Manage Plan</a></li>
+                    {% endif %}
+                </ul>
+
+            </li>
+
+            <li>
+                {% if perms.AssessmentSystem.view_expenses %}
+                <a href="#"><i class="metismenu-icon pe-7s-car"></i>Expenses<i class="metismenu-state-icon pe-7s-angle-down caret-left"></i></a> {% endif %}
+                <ul>
+                    {% if perms.AssessmentSystem.add_expenses %}
+                    <li><a href="/addexp"><i class="metismenu-icon"></i>Add Expenses </a></li>
+                    {% endif %} {% if perms.AssessmentSystem.change_expenses or perms.AssessmentSystem.delete_expenses%}
+                    <li><a href="/manageexp"><i class="metismenu-icon"></i>Manage Expenses </a></li>
+                    {% endif %}
+                </ul>
+
+            </li>
+            {% if perms.AssessmentSystem.view_users or perms.auth.view_group %}
+            <li><a href="#"><i class="metismenu-icon pe-7s-car"></i>manage user<i class="metismenu-state-icon pe-7s-angle-down caret-left"></i></a> {% endif %}
+                <ul>
+                    {% if perms.AssessmentSystem.view_users or perms.AssessmentSystem.add_users %}
+                    <li><a href="/manageuser"><i class="metismenu-icon"></i>Users </a></li>
+                    {% endif %} {% if perms.auth.view_group or perms.auth.add_group %}
+                    <li><a href="/managerole"><i class="metismenu-icon"></i>Roles</a></li>
+                    {% endif %}
+                </ul>
+            </li>
+
+            <!-- <li><a href="/profit"><i class="metismenu-icon pe-7s-display2"></i>profit </a></li> -->
+            <!-- <li><a href="#"><i class="metismenu-icon pe-7s-car"></i>Reports<i class="metismenu-state-icon pe-7s-angle-down caret-left"></i></a> -->
+            <!-- <ul>
+                <li><a href="/report"><i class="metismenu-icon pe-7s-display2"></i>Plan reports </a></li>
+                <li><a href="/expensesreport"><i class="metismenu-icon pe-7s-display2"></i>Expenses reports </a></li>
+            </ul> -->
+
+
+            </li>
+        </ul>
+    </div>
+</div>
+</div>
